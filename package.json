@@ -1,0 +1,19 @@
+{
+  "name": "md-includes",
+  "version": "0.0.1",
+  "description": "",
+  "main": "md-includes.js",
+  "bin": {
+    "md-includes": "./md-includes.cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IBM/md-includes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IBM/md-includes/issues"
+  },
+  "homepage": "https://github.com/IBM/md-includes#readme"
+}
