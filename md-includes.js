@@ -20,7 +20,7 @@ function replaceIncludeData(matches, fileData, dir, includeDir) {
 
     var recursiveMatches = includeData.match(includePattern);
     if (recursiveMatches && recursiveMatches.length > 0) {
-      fileData = replaceIncludeData(recursiveMatches, fileData, includeDir, path.dirname(includeFile));
+      fileData = replaceIncludeData(recursiveMatches, fileData, dir, path.dirname(includeFile));
     } 
   }
   return fileData; 
@@ -56,7 +56,7 @@ function mdIncludes(dir, output, options) {
     includeDir = options.includeDir;
   }
 
-  fs.rmdirSync(output, { recursive: true });
+  fs.rmSync(output, { recursive: true, force: true });
 
   fs.mkdirSync(output);
 
