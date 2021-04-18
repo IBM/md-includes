@@ -14,11 +14,11 @@
     "url": "git+https://github.com/IBM/md-includes.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/IBM/md-includes/issues"
   },
-  "homepage": "https://github.com/IBM/md-includes#readme",
+  "homepage": "https://github.com/IBM/md-includes",
   "devDependencies": {
     "jest": "^26.6.3"
   }
