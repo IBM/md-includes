@@ -56,7 +56,9 @@ function mdIncludes(dir, output, options) {
     includeDir = options.includeDir;
   }
 
-  fs.rmSync(output, { recursive: true, force: true });
+  if (fs.existsSync(output)) {
+    fs.rmdirSync(output, { recursive: true });
+  }
 
   fs.mkdirSync(output);
 
