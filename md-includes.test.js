@@ -22,6 +22,11 @@ test('test simpleinclude', () => {
   compareFolderOutput("output", "tests-expected-output/simpleinclude");
 });
 
+test('test simpleincludewithfrontmatter', () => {
+  handleIncludes("tests/simpleincludewithfrontmatter", "output", {});
+  compareFolderOutput("output", "tests-expected-output/simpleincludewithfrontmatter");
+});
+
 test('test multiincludes', () => {
   handleIncludes("tests/multiincludes", "output", {});
   compareFolderOutput("output", "tests-expected-output/multiincludes");
