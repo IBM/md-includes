@@ -6,6 +6,24 @@ var path = require('path');
 // Constants
 var includePattern = /^#include\s"(.+\/|\/|\w|-|\/)+\.(md|markdown)"/gm;
 var includePatternFileStart = 10;
+var frontMatterString = "---";
+var frontMatterStringLength = 3;
+var newLine = "\n";
+var constantsPrefix = "{:";
+var constantsEnd = "}";
+
+function removeMetadataAndBeginningNewLines(data) {
+  if (data.startsWith(frontMatterString)) {
+    return removeMetadataAndBeginningNewLines(data.substring(data.indexOf(frontMatterString, frontMatterStringLength) + frontMatterStringLength));
+  } else if (data.startsWith(newLine+newLine)) {
+    return removeMetadataAndBeginningNewLines(data.substring(2));
+  } else if (data.startsWith(newLine)) {
+    return removeMetadataAndBeginningNewLines(data.substring(1));
+  } else if (data.startsWith(constantsPrefix)) {
+    return removeMetadataAndBeginningNewLines(data.substring(data.indexOf(constantsEnd) + 1));
+  }
+  return data;
+}
 
 function replaceIncludeData(matches, fileData, dir, includeDir) {
   for (let i = 0; i < matches.length; i++) {
@@ -15,6 +33,7 @@ function replaceIncludeData(matches, fileData, dir, includeDir) {
        includeFile = dir + includeFileSuffix;
     }
     var includeData = fs.readFileSync(includeFile).toString();
+    includeData = removeMetadataAndBeginningNewLines(includeData);
 
     fileData = fileData.replace(matches[i], includeData);
 
