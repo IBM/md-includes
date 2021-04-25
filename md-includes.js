@@ -12,15 +12,15 @@ var newLine = "\n";
 var constantsPrefix = "{:";
 var constantsEnd = "}";
 
-function removeNewLinesAndMetadata(data) {
+function removeMetadataAndBeginningNewLines(data) {
   if (data.startsWith(frontMatterString)) {
-    return removeNewLinesAndMetadata(data.substring(data.indexOf(frontMatterString, frontMatterStringLength) + frontMatterStringLength));
+    return removeMetadataAndBeginningNewLines(data.substring(data.indexOf(frontMatterString, frontMatterStringLength) + frontMatterStringLength));
   } else if (data.startsWith(newLine+newLine)) {
-    return removeNewLinesAndMetadata(data.substring(2));
+    return removeMetadataAndBeginningNewLines(data.substring(2));
   } else if (data.startsWith(newLine)) {
-    return removeNewLinesAndMetadata(data.substring(1));
+    return removeMetadataAndBeginningNewLines(data.substring(1));
   } else if (data.startsWith(constantsPrefix)) {
-    return removeNewLinesAndMetadata(data.substring(data.indexOf(constantsEnd) + 1));
+    return removeMetadataAndBeginningNewLines(data.substring(data.indexOf(constantsEnd) + 1));
   }
   return data;
 }
@@ -33,7 +33,7 @@ function replaceIncludeData(matches, fileData, dir, includeDir) {
        includeFile = dir + includeFileSuffix;
     }
     var includeData = fs.readFileSync(includeFile).toString();
-    includeData = removeNewLinesAndMetadata(includeData);
+    includeData = removeMetadataAndBeginningNewLines(includeData);
 
     fileData = fileData.replace(matches[i], includeData);
 
