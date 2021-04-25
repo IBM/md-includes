@@ -1,6 +1,6 @@
 {
   "name": "md-includes",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "main": "md-includes.js",
   "bin": {
