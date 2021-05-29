@@ -10,14 +10,14 @@ Run the following command to install the tools globally:
 npm install -g md-includes
 ```
 
-Depending on your setup, you might need to put sudo in front of the command to install it globally. For example, ` sudo npm install -g md-includes`
+Depending on your setup, you might need to put `sudo` in front of the command to install it globally. For example, ` sudo npm install -g md-includes`
 
 ## Usage
 
 In your markdown files you can specify other markdown files that you want to include by using C style includes (#include "filename"). Example markdown file with an include:
 
 ```
-This is a markdown file that is going to include the contents another file with the name sub.md.
+This is a markdown file that is going to include the contents of another file with the name sub.md.
 
 #include "sub.md"
 ```
