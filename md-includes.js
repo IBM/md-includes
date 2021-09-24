@@ -11,6 +11,7 @@ var frontMatterStringLength = 3;
 var newLine = "\n";
 var constantsPrefix = "{:";
 var constantsEnd = "}";
+var mdExtension = ".md";
 
 function removeMetadataAndBeginningNewLines(data) {
   if (data.startsWith(frontMatterString)) {
@@ -46,10 +47,13 @@ function replaceIncludeData(matches, fileData, dir, includeDir) {
 }
 
 function parseInclude(filePath, file, dir, output, includeDir) {
-  var data = fs.readFileSync(filePath).toString();
-  var matches = data.match(includePattern);
-  if (matches && matches.length > 0) {
-    data = replaceIncludeData(matches, data, dir, includeDir);
+  var data = fs.readFileSync(filePath);
+  if (mdExtension === path.extname(file)) {
+    data = data.toString();
+    var matches = data.match(includePattern);
+    if (matches && matches.length > 0) {
+      data = replaceIncludeData(matches, data, dir, includeDir);
+    }
   }
   var fileOutName = output + '/' + file;
   fs.writeFileSync(fileOutName, data);
